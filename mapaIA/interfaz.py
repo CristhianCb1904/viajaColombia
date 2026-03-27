@@ -24,9 +24,9 @@ left_frame.pack(side="left", fill="both", expand=True, padx=10, pady=10)
 right_frame.pack(side="right", fill="both", expand=True, padx=10, pady=10)
 
 deepButton = ctk.CTkButton(right_frame, text="Busca Profunda", font=("arial", 16, "bold"), fg_color="#A200FF", hover_color="#9000FF")
-deepButton.pack(pady=20)
+deepButton.pack(padx=20, pady=20)
 uniformButton = ctk.CTkButton(right_frame, text="Busca Uniforme", font=("arial", 16, "bold"), fg_color="#A200FF", hover_color="#9000FF")
-uniformButton.pack(pady=20)
+uniformButton.pack(padx=20, pady=20)
 
 #Mapa interactivo
 mapa_frame = ctk.CTkFrame(left_frame, fg_color="#9000FF")
