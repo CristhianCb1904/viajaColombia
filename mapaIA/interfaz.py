@@ -2,6 +2,14 @@ import numpy as np
 import customtkinter as ctk
 from tkintermapview import TkinterMapView
 
+#Capitales
+
+capitales = np.array([
+                    "Leticia", "Medellín", "Arauca", "Barranquilla", "Cartagena", "Tunja", "Manizales", "Florencia",
+                    "yopal", "Popayán", "Valledupar", "Quibdó", "Montería", "Bogotá", "Inírida", "San José del Guaviare",
+                    "Neiva", "Riohacha", "Santa Marta", "Villavicencio", "San Juan de Pasto", "San José de Cúcuta", 
+                    "Mocoa", "Armenia", "Pereira", "San Andrés", "Bucaramanga", "Sincelejo", "Ibagué", "Cali", "Mitú", "Puerto Carreño" ] )
+
 ctk.set_appearance_mode("dark")
 
 ventana = ctk.CTk()
@@ -26,8 +34,24 @@ right_frame.pack(side="right", fill="both", expand=True, padx=10, pady=10)
 
 deepButton = ctk.CTkButton(right_frame, text="Busca Profunda", font=("arial", 16, "bold"), fg_color="#A200FF", hover_color="#9000FF")
 deepButton.pack(padx=20, pady=20)
+
 uniformButton = ctk.CTkButton(right_frame, text="Busca Uniforme", font=("arial", 16, "bold"), fg_color="#A200FF", hover_color="#9000FF")
 uniformButton.pack(padx=20, pady=20)
+
+#Selección de ciudades
+ciudadInicio = ctk.CTkLabel(right_frame, text="Selecciona la ciudad de inicio:", font=("arial", 14))
+ciudadInicio.pack(padx=20, pady=10)
+
+ciudadInicioCombo = ctk.CTkComboBox(right_frame, values=capitales.tolist(), font=("arial", 14))
+ciudadInicioCombo.pack(padx=20, pady=10)
+
+ciudadDestino = ctk.CTkLabel(right_frame, text="Selecciona la ciudad de destino:", font=("arial", 14))
+ciudadDestino.pack(padx=20, pady=10)
+ciudadDestinoCombo = ctk.CTkComboBox(right_frame, values=capitales.tolist(), font=("arial", 14))
+ciudadDestinoCombo.pack(padx=20, pady=10)
+
+searchButton = ctk.CTkButton(right_frame, text="Calcular Ruta", font=("arial", 16, "bold"), fg_color="#A200FF", hover_color="#9000FF")
+searchButton.pack(padx=20, pady=20)
 
 #Mapa interactivo
 mapa_frame = ctk.CTkFrame(left_frame, fg_color="#9000FF")
@@ -43,13 +67,7 @@ mapWidget.set_marker(4.5709, -74.0721, text="Bogotá")
 ventana.mainloop()
 
 
-#Capitales
 
-capitales = np.array([
-                    "Leticia", "Medellín", "Arauca", "Barranquilla", "Cartagena", "Tunja", "Manizales", "Florencia",
-                    "yopal", "Popayán", "Valledupar", "Quibdó", "Montería", "Bogotá", "Inírida", "San José del Guaviare",
-                    "Neiva", "Riohacha", "Santa Marta", "Villavicencio", "San Juan de Pasto", "San José de Cúcuta", 
-                    "Mocoa", "Armenia", "Pereira", "San Andrés", "Bucaramanga", "Sincelejo", "Ibagué", "Cali", "Mitú", "Puerto Carreño" ] )
 
 # Coordenadas de las capitales
 #coordenadas = np.array([[ -4.215, -69.940], [6.244, -75.573], [7.086, -70.759], [10.968, -74.781], [10.391, -75.479], [5.537, -73.367], [5.068, -75.517],
