@@ -5,10 +5,42 @@ from tkintermapview import TkinterMapView
 #Capitales
 
 capitales = np.array([
-                    "Leticia", "Medellín", "Arauca", "Barranquilla", "Cartagena", "Tunja", "Manizales", "Florencia",
-                    "yopal", "Popayán", "Valledupar", "Quibdó", "Montería", "Bogotá", "Inírida", "San José del Guaviare",
-                    "Neiva", "Riohacha", "Santa Marta", "Villavicencio", "San Juan de Pasto", "San José de Cúcuta", 
-                    "Mocoa", "Armenia", "Pereira", "San Andrés", "Bucaramanga", "Sincelejo", "Ibagué", "Cali", "Mitú", "Puerto Carreño" ] )
+                    "Bogotá", "Tunja", "Bucaramanga","Villavicencio", "Ibagué",
+                        "Medellín", "Manizales", "Pereira", "Armenia", "Cali" ] )
+
+
+def DFS(origen, destino):
+    vecinos = {
+        "Bogotá": ["Tunja", "Villavicencio", "Ibagué"],
+        "Tunja": ["Bogotá", "Bucaramanga", "Manizales"],
+        "Bucaramanga": ["Tunja", "Pereira"],
+        "Villavicencio": ["Bogotá", "Cali"],
+        "Ibagué": ["Bogotá", "Medellín"],
+        "Medellín": ["Ibagué", "Armenia"],
+        "Manizales": ["Tunja", "Pereira"],
+        "Pereira": ["Bucaramanga", "Manizales"],
+        "Armenia": ["Medellín", "Cali"],
+        "Cali": ["Villavicencio", "Armenia"]
+    }
+
+    pila = [(origen, [origen])]
+    visitados = set()
+
+    while pila:
+        actual, ruta = pila.pop()
+
+        if actual not in visitados:
+            visitados.add(actual)
+
+            if actual == destino:
+                return ruta
+            
+            for vecino in vecinos.get(actual, []):
+                if vecino not in visitados:
+                    pila.append((vecino, ruta + [vecino]))
+
+    return None
+
 
 ctk.set_appearance_mode("dark")
 
@@ -62,7 +94,14 @@ mapWidget.pack(fill="both", expand=True)
 mapWidget.set_position(4.5709, -74.2973)  
 mapWidget.set_zoom(6)
 
-mapWidget.set_marker(4.5709, -74.0721, text="Bogotá")
+#Escritura de ruta final
+rutaFrame = ctk.CTkFrame(right_frame, fg_color="#3F3347")
+rutaFrame.pack(fill="both", expand = True)
+
+DFSLabel = ctk.CTkLabel(rutaFrame, text="Ruta Encontrada:", font=("arial", 14))
+DFSLabel.pack(padx=20, pady=10)
+
+print(DFS("Bogotá", "Medellín"))
 
 ventana.mainloop()
 
