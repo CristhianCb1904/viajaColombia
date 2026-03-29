@@ -1,3 +1,16 @@
+# busqueda de mapa de colombia - inteligencia Artificial
+# 30/03/2026
+# integrantes: Julian Alejandro Garcia Rubio, Cristhian Camilo Bermudez Silva, Miguel Angel Gonzales Contreras
+# Profesor: Helioth Sanchez
+
+# Indicaciones para iniciar el programa:
+# -tener instalado Python
+# -instalar las siguientes linesa de codigo para las librerias:
+
+# * python -m pip install numpy
+# * python -m pip install tkintermapview
+# * python -m pip install customtkinter tkintermapview requests polyline
+
 import customtkinter as ctk
 from tkinter import StringVar
 import tkintermapview
